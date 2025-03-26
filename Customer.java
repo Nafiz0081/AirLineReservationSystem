@@ -94,7 +94,8 @@ public class Customer {
      * @return customers data in String
      */
     private String toString(int i) {
-        return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "", i,
+        return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "",
+                i,
                 randomIDDisplay(userID), name, age, email, address, phone);
     }
 
@@ -269,62 +270,65 @@ public class Customer {
         this.numOfTicketsBookedByUser.set(index, newNumOfTickets);
     }
 
-    // ************************************************************ Setters &
-    // Getters ************************************************************
-
-    public List<Flight> getFlightsRegisteredByUser() {
-        return flightsRegisteredByUser;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getAddress() {
-        return address;
+    // Getters and Setters
+    public String getUserID() {
+        return userID;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public String getUserID() {
-        return userID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Integer> getNumOfTicketsBookedByUser() {
-        return numOfTicketsBookedByUser;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List<Flight> getFlightsRegisteredByUser() {
+        return new ArrayList<>(flightsRegisteredByUser);
+    }
+
+    public void addFlight(Flight flight, int numTickets) {
+        flightsRegisteredByUser.add(flight);
+        numOfTicketsBookedByUser.add(numTickets);
+    }
+
+    public List<Integer> getNumOfTicketsBookedByUser() {
+        return new ArrayList<>(numOfTicketsBookedByUser);
     }
 }
