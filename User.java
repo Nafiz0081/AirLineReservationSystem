@@ -1,7 +1,3 @@
-/*
- * This class is intended to be the main class for this Project. All necessary methods are getting calls from this class.
- */
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +8,7 @@ public class User {
     private static List<Customer> customersCollection = new ArrayList<>();
 
     static {
-        // Initialize default admin credentials
+
         adminUserNameAndPassword[0][0] = "root";
         adminUserNameAndPassword[0][1] = "root";
     }
@@ -36,7 +32,7 @@ public class User {
             do {
                 menuHandler.displayMainMenu();
                 choice = scanner.nextInt();
-                scanner.nextLine(); // Consume newline
+                scanner.nextLine();
 
                 try {
                     switch (choice) {

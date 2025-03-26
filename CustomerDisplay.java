@@ -1,9 +1,5 @@
 public class CustomerDisplay {
-    /**
-     * Shows the customers' data in formatted way.
-     * @param customers list of customers to display
-     * @param showHeader to check if we want to print ascii art for the customers' data
-     */
+
     public void displayCustomersData(java.util.List<Customer> customers, boolean showHeader) {
         displayHeader();
         int i = 0;
@@ -16,9 +12,7 @@ public class CustomerDisplay {
         }
     }
 
-    /**
-     * Shows the header for printing customers data
-     */
+
     private void displayHeader() {
         System.out.println();
         System.out.printf(
@@ -33,12 +27,7 @@ public class CustomerDisplay {
         System.out.println();
     }
 
-    /**
-     * Formats customer data into a display string
-     * @param customer the customer to format
-     * @param serialNum the serial number for display
-     * @return formatted string
-     */
+
     private String formatCustomerData(Customer customer, int serialNum) {
         return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "",
                 serialNum,
@@ -50,11 +39,7 @@ public class CustomerDisplay {
                 customer.getPhone());
     }
 
-    /**
-     * Adds space between userID to increase its readability
-     * @param userId id to format
-     * @return formatted user ID
-     */
+
     private String formatUserId(String userId) {
         if (userId == null || userId.length() < 4) {
             return userId;

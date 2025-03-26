@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class RandomGenerator implements FlightDataGenerator {
 
-    //        ************************************************************ Fields ************************************************************
+
 
     private String randomNum;
-    /*  City name is at the 0-index, its latitude is on the 1-index and longitude on the 2-index*/
+
     private static final String[][] destinations = {
             {"Karachi", "24.871940", "66.988060"}, {"Bangkok", "13.921430", "100.595337"}, {"Jakarta", "-6.174760", "106.827072"},
             {"Islamabad", "33.607587", "73.100316"}, {"New York City", "40.642422", "-73.781749"}, {"Lahore", "31.521139", "74.406519"},
@@ -24,7 +24,7 @@ public class RandomGenerator implements FlightDataGenerator {
             {"Berlin", "52.554316", "13.291213"}, {"Paris", "48.999560", "2.539274"}, {"Dubai", "25.249869", "55.366483"}
     };
 
-    //        ************************************************************ Behaviours/Methods ************************************************************
+
 
 
     @Override
@@ -90,7 +90,7 @@ public class RandomGenerator implements FlightDataGenerator {
         return randomAlphabets.toString();
     }
 
-    //        ************************************************************ Setters & Getters ************************************************************
+
 
     public void setRandomNum(String randomNum) {
         this.randomNum = randomNum;

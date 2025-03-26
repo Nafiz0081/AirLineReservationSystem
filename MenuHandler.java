@@ -95,7 +95,7 @@ public class MenuHandler {
         do {
             displayAdminMenu();
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             processAdminMenuChoice(choice);
         } while (choice != 0);
     }
@@ -216,16 +216,13 @@ public class MenuHandler {
         flightManager.deleteFlight(flightNum);
     }
 
-    /**
-     * Handles the passenger menu after successful login
-     * @param id The passenger ID
-     */
+
     private void handlePassengerMenu(String id) {
         int choice;
         do {
             displayPassengerMenu();
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             processPassengerMenuChoice(choice, id);
         } while (choice != 0);
     }
@@ -276,7 +273,7 @@ public class MenuHandler {
         String flightNumber = scanner.nextLine();
         System.out.print("Enter the number of tickets (max 10): ");
         int numTickets = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         
         if (numTickets > 10) {
             System.out.println("ERROR! You can't book more than 10 tickets at a time.");
