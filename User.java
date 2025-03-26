@@ -9,40 +9,62 @@ import java.util.List;
 import java.util.Scanner;
 
 public class User {
-
-    // ************************************************************ Fields
-    // ************************************************************
-
-    /*
-     * 2D Array to store admin credentials. Default credentials are stored on [0][0]
-     * index. Max num of admins can be 10....
-     */
     static String[][] adminUserNameAndPassword = new String[10][2];
     private static List<Customer> customersCollection = new ArrayList<>();
 
-    // ************************************************************
-    // Behaviours/Methods
-    // ************************************************************
+    static {
+        // Initialize default admin credentials
+        adminUserNameAndPassword[0][0] = "root";
+        adminUserNameAndPassword[0][1] = "root";
+    }
+
+    public static List<Customer> getCustomersCollection() {
+        return customersCollection;
+    }
 
     public static void main(String[] args) {
-        int countNumOfUsers = 1;
-        RolesAndPermissions r1 = new RolesAndPermissions();
-        Flight f1 = new Flight();
-        FlightReservation bookingAndReserving = new FlightReservation();
-        Customer c1 = new Customer();
-        f1.flightScheduler();
-        Scanner read = new Scanner(System.in);
+        Flight flightManager = new Flight();
+        MenuHandler menuHandler = new MenuHandler();
+        flightManager.flightScheduler();
+        Scanner scanner = new Scanner(System.in);
 
        
         System.out.println(
                 "\n\t\t\t\t\t+++++++++++++ Welcome to BAV AirLines +++++++++++++\n\nTo Further Proceed, Please enter a value.");
         System.out.println(
                 "\n***** Default Username && Password is root-root ***** Using Default Credentials will restrict you to just view the list of Passengers....\n");
-        displayMainMenu();
-        int desiredOption = read.nextInt();
-        while (desiredOption < 0 || desiredOption > 8) {
-            System.out.print("ERROR!! Please enter value between 0 - 4. Enter the value again :\t");
-            desiredOption = read.nextInt();
+        
+        menuHandler.displayMainMenu();
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        while (choice != 0) {
+            switch (choice) {
+                case 1:
+                    menuHandler.handleAdminLogin();
+                    break;
+                case 2:
+                    handleAdminRegistration();
+                    break;
+                case 3:
+                    handlePassengerLogin();
+                    break;
+                case 4:
+                    new Customer().addNewCustomer();
+                    break;
+                case 5:
+                    flightManager.displayFlightSchedule();
+                    break;
+                case 6:
+                    menuHandler.displayMainMenu(); // Display manual is same as main menu
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+            
+            menuHandler.displayMainMenu();
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
         }
 
         do {
