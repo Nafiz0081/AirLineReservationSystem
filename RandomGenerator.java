@@ -74,12 +74,19 @@ public class RandomGenerator implements FlightDataGenerator {
 
     @Override
     public String generateFlightNumber(int letterCount, int divisor) {
+        if (letterCount <= 0 || divisor <= 0) {
+            throw new IllegalArgumentException("Letter count and divisor must be positive numbers");
+        }
         Random random = new Random();
         StringBuilder randomAlphabets = new StringBuilder();
-        for (int i = 0; i < uptoHowManyLettersRequired; i++) {
-            randomAlphabets.append((char) (random.nextInt(26) + 'a'));
+        for (int i = 0; i < letterCount; i++) {
+            randomAlphabets.append((char) (random.nextInt(26) + 'A'));
         }
-        randomAlphabets.append("-").append(generateSeatCount() / divisor);
+        int seatComponent = generateSeatCount();
+        if (divisor > 0) {
+            seatComponent /= divisor;
+        }
+        randomAlphabets.append("-").append(seatComponent);
         return randomAlphabets.toString();
     }
 

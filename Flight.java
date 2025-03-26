@@ -76,7 +76,7 @@ public class Flight implements DistanceCalculator {
             String flightNumber = dataGenerator.generateFlightNumber(2, 1).toUpperCase();
             int numOfSeatsInTheFlight = dataGenerator.generateSeatCount();
             String gate = dataGenerator.generateFlightNumber(1, 30);
-            flightList.add(new Flight(flightSchedule, flightNumber, numOfSeatsInTheFlight, chosenDestinations, distanceBetweenTheCities, gate.toUpperCase()))
+            flightList.add(new Flight(flightSchedule, flightNumber, numOfSeatsInTheFlight, chosenDestinations, distanceBetweenTheCities, gate.toUpperCase()));
         }
     }
 
@@ -203,7 +203,6 @@ public class Flight implements DistanceCalculator {
      * @param lon2 destination city/airport longitude
      * @return distance both in miles and km between the cities/airports
      */
-    @Override
     @Override
     public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;
