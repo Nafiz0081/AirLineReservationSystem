@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Flight extends FlightDistance {
+public class Flight implements DistanceCalculator {
 
     //        ************************************************************ Fields ************************************************************
 
@@ -61,17 +61,22 @@ public class Flight extends FlightDistance {
      * Creates Flight Schedule. All methods of this class are collaborating with each other
      * to create flight schedule of the said length in this method.
      */
+    private final FlightDataGenerator dataGenerator;
+
+    public Flight(FlightDataGenerator dataGenerator) {
+        this.dataGenerator = dataGenerator;
+    }
+
     public void flightScheduler() {
         int numOfFlights = 15;              // decides how many unique flights to be included/display in scheduler
-        RandomGenerator r1 = new RandomGenerator();
         for (int i = 0; i < numOfFlights; i++) {
-            String[][] chosenDestinations = r1.randomDestinations();
+            String[][] chosenDestinations = dataGenerator.generateDestinations();
             String[] distanceBetweenTheCities = calculateDistance(Double.parseDouble(chosenDestinations[0][1]), Double.parseDouble(chosenDestinations[0][2]), Double.parseDouble(chosenDestinations[1][1]), Double.parseDouble(chosenDestinations[1][2]));
             String flightSchedule = createNewFlightsAndTime();
-            String flightNumber = r1.randomFlightNumbGen(2, 1).toUpperCase();
-            int numOfSeatsInTheFlight = r1.randomNumOfSeats();
-            String gate = r1.randomFlightNumbGen(1, 30);
-            flightList.add(new Flight(flightSchedule, flightNumber, numOfSeatsInTheFlight, chosenDestinations, distanceBetweenTheCities, gate.toUpperCase()));
+            String flightNumber = dataGenerator.generateFlightNumber(2, 1).toUpperCase();
+            int numOfSeatsInTheFlight = dataGenerator.generateSeatCount();
+            String gate = dataGenerator.generateFlightNumber(1, 30);
+            flightList.add(new Flight(flightSchedule, flightNumber, numOfSeatsInTheFlight, chosenDestinations, distanceBetweenTheCities, gate.toUpperCase()))
         }
     }
 
@@ -198,6 +203,7 @@ public class Flight extends FlightDistance {
      * @param lon2 destination city/airport longitude
      * @return distance both in miles and km between the cities/airports
      */
+    @Override
     @Override
     public String[] calculateDistance(double lat1, double lon1, double lat2, double lon2) {
         double theta = lon1 - lon2;

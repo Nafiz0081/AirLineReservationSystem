@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomGenerator {
+public class RandomGenerator implements FlightDataGenerator {
 
     //        ************************************************************ Fields ************************************************************
 
@@ -27,19 +27,19 @@ public class RandomGenerator {
     //        ************************************************************ Behaviours/Methods ************************************************************
 
 
-    /* Generates Random ID for the Customers....*/
-    public void randomIDGen() {
+    @Override
+    public String generateCustomerId() {
         Random rand = new Random();
         String randomID = Integer.toString(rand.nextInt(1000000));
 
         while (Integer.parseInt(randomID) < 20000) {
             randomID = Integer.toString(rand.nextInt(1000000));
         }
-        setRandomNum(randomID);
+        return randomID;
     }
 
-    /*This method sets the destinations for each of the flights from the above destinations randomly.....*/
-    public String[][] randomDestinations() {
+    @Override
+    public String[][] generateDestinations() {
         Random rand = new Random();
         int randomCity1 = rand.nextInt(destinations.length);
         int randomCity2 = rand.nextInt(destinations.length);
@@ -62,8 +62,8 @@ public class RandomGenerator {
         return chosenDestinations;
     }
 
-    /*Generates the Random Number of Seats for each flight*/
-    public int randomNumOfSeats() {
+    @Override
+    public int generateSeatCount() {
         Random random = new Random();
         int numOfSeats = random.nextInt(500);
         while (numOfSeats < 75) {
@@ -72,14 +72,14 @@ public class RandomGenerator {
         return numOfSeats;
     }
 
-    /*Generates the Unique Flight Number....*/
-    public String randomFlightNumbGen(int uptoHowManyLettersRequired, int divisible) {
+    @Override
+    public String generateFlightNumber(int letterCount, int divisor) {
         Random random = new Random();
         StringBuilder randomAlphabets = new StringBuilder();
         for (int i = 0; i < uptoHowManyLettersRequired; i++) {
             randomAlphabets.append((char) (random.nextInt(26) + 'a'));
         }
-        randomAlphabets.append("-").append(randomNumOfSeats() / divisible);
+        randomAlphabets.append("-").append(generateSeatCount() / divisor);
         return randomAlphabets.toString();
     }
 
