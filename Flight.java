@@ -32,6 +32,7 @@ public class Flight implements DistanceCalculator {
         toWhichCity = null;
         fromWhichCity = null;
         this.gate = null;
+        this.dataGenerator = new RandomGenerator();
     }
 
     /**

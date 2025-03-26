@@ -42,9 +42,9 @@ public class Customer {
      */
     Customer(String name, String email, String password, String phone, String address, int age) {
         RandomGenerator random = new RandomGenerator();
-        random.randomIDGen();
+        String randomId = random.generateCustomerId();
         this.name = name;
-        this.userID = random.getRandomNumber();
+        this.userID = randomId;
         this.email = email;
         this.password = password;
         this.phone = phone;
@@ -247,6 +247,20 @@ public class Customer {
             }
         }
         return newString.toString();
+    }
+
+    /**
+     * Validates if a passenger with the given ID exists
+     * @param id The ID to validate
+     * @return true if passenger exists, false otherwise
+     */
+    public boolean validatePassenger(String id) {
+        for (Customer c : customerCollection) {
+            if (id.equals(c.getUserID())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
